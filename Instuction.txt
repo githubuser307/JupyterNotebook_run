@@ -28,3 +28,6 @@ Change localhost with IP.
 su root
 cd /home/jupyter
 nohup  /home/jupyter/anaconda3/bin/jupyter notebook --config /home/jupyter/.jupyter/jupyter_notebook_config.py &
+
+Информация отсюда:
+http://formvalidate.com/how-to-install-and-configure-jupyter-notebook-into-centos
