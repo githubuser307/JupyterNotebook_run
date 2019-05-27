@@ -1,0 +1,30 @@
+su root
+yum install bzip2 -y
+
+Добавляем пользователя:
+
+useradd jupyter
+echo 'jupyter ALL = (ALL) NOPASSWD: ALL' > /etc/sudoers.d/20-jupyter
+su jupyter
+cd ~
+
+Создаем каталог:
+mkdir ~/notebooks
+
+Скачиваем дистрибутив и запускаем установщик:
+curl -o anaconda.sh https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh
+bash anaconda.sh
+
+Генерируем конфигурационный файл для запуска:
+su jupyter
+cd ~
+jupyter notebook --generate-config
+
+Меняем ip адрес для запуска на внешнем интерфейсе:
+mcedit /home/jupyter/.jupyter/jupyter_notebook_config.py
+Change localhost with IP.
+
+Запускаем сервер
+su root
+cd /home/jupyter
+nohup  /home/jupyter/anaconda3/bin/jupyter notebook --config /home/jupyter/.jupyter/jupyter_notebook_config.py &
